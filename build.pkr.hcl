@@ -34,7 +34,7 @@ source "googlecompute" "getapug-instance" {
     source_image_family = var.source_image_family
     ssh_username = var.ssh_username
     zone = var.zone
-    somit_external_ip = true
+    omit_external_ip = true
     use_internal_ip = true
     use_os_login = true
     use_iap = true
