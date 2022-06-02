@@ -1,0 +1,14 @@
+# In this directory, run the following command to build this builder.
+# $ gcloud builds submit . --config=cloudbuild.yaml
+# Perform a Packer build based on the `build.pkr.hcl` configuration
+# and user variables from variables.pkrvars.hcl file. This Packer
+# build creates a GCE image.
+#
+# See README.md for invocation instructions.
+steps:
+- name: 'gcr.io/$PROJECT_ID/packer'
+  args:
+  - build
+  - -var-file=vars/$_ENV_NAME/build.json
+  - build.pkr.hcl
+tags: ['cloud-builders-community']

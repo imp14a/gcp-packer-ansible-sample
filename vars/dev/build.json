@@ -1,0 +1,8 @@
+{
+    "project_id": "lzone-gsandbox",
+    "source_image_family": "centos-7",
+    "ssh_username" : "packer",
+    "zone" : "us-central1-a",
+    "subnetwork" : "lzone-gsandbox-pug-subnet",
+    "image_sufix": "pug-image"
+}
