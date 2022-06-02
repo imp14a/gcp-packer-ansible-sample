@@ -10,7 +10,7 @@
 
 - pip:
     name: "{{ item }}"
-    executable: pip-3.3
+    executable: pip3
   with_items: 
     - virtualenv
     - Flask
@@ -22,7 +22,7 @@
     group: root
     mode: 0644
 
-- name: Change file ownership, group and permissions
+- name: Create site directory
   ansible.builtin.file:
     path: /pugsite
     state: directory
