@@ -61,7 +61,8 @@ build {
     }*/
 
     provisioner "ansible-local" {
-        playbook_file   = "/tmp/packer-ansible-provisioner/playbook.yaml"
+        playbook_file     = "./ansible/playbook.yaml"
+        staging_directory = "/tmp/packer-ansible-provisioner/"
         extra_arguments = []
     }
 }
