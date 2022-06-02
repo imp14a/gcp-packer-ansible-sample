@@ -44,15 +44,18 @@ source "googlecompute" "getapug-instance" {
 build {
   sources = ["sources.googlecompute.getapug-instance"]
 
+    provisioner "shell" {
+        inline = [
+            "sudo yum install ansible -y",
+            "mkdir /tmp/packer-ansible-provisioner/"
+        ]
+    }
 
     provisioner "file" {
         source = "./ansible/"
         destination = "/tmp/packer-ansible-provisioner/"
     }
 
-    provisioner "shell" {
-        inline = ["sudo yum install ansible -y"]
-    }
     /*provisioner "shell" {
         inline = ["sudo mkdir /test","sudo touch /test/testfile.txt"]
     }*/
