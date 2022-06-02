@@ -44,7 +44,21 @@ source "googlecompute" "getapug-instance" {
 build {
   sources = ["sources.googlecompute.getapug-instance"]
 
-  provisioner "shell" {
-      inline = ["sudo mkdir /test","sudo touch /test/testfile.txt"]
-  }
+
+    provisioner "file" {
+        source = "ansible/"
+        destination = "/tmp/packer-ansible-provisioner"
+    }
+
+    provisioner "shell" {
+        inline = ["sudo yum install ansible -y"]
+    }
+    /*provisioner "shell" {
+        inline = ["sudo mkdir /test","sudo touch /test/testfile.txt"]
+    }*/
+
+    provisioner "ansible-local" {
+        playbook_file   = "./ansible/playbook.yaml"
+        extra_arguments = []
+    }
 }
