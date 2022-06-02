@@ -46,8 +46,8 @@ build {
 
 
     provisioner "file" {
-        source = "ansible/"
-        destination = "/tmp/packer-ansible-provisioner"
+        source = "./ansible/"
+        destination = "/tmp/packer-ansible-provisioner/"
     }
 
     provisioner "shell" {
