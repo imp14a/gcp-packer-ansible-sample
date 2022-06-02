@@ -22,6 +22,14 @@
     group: root
     mode: 0644
 
+- name: Change file ownership, group and permissions
+  ansible.builtin.file:
+    path: /pugsite
+    state: directory
+    owner: root
+    group: root
+    mode: '0644'
+
 - copy:
     src: /tmp/packer-ansible-provisioner/roles/application/files/pugsite-start.sh
     dest: /pugsite/pugsite-start.sh
