@@ -14,7 +14,13 @@
 
 - copy:
     src: /tmp/packer-ansible-provisioner/roles/application/files/pugsite-start.sh
-    dest: /pugsite
+    dest: /pugsite/pugsite-start.sh
     owner: root
     group: root
     mode: 0644
+
+#- name: Git checkout
+#  ansible.builtin.git:
+#    repo: 'https://foosball.example.org/path/to/repo.git'
+#    dest: /srv/checkout
+#    version: release-0.22
