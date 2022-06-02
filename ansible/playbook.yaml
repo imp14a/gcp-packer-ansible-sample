@@ -1,5 +1,4 @@
---- 
-
-- hosts: webserver
+---
+- hosts: webservers
   roles:
     - application
