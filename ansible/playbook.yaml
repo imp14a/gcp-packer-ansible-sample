@@ -2,4 +2,4 @@
 
 - hosts: webserver
   roles:
-        - application
+    - application
