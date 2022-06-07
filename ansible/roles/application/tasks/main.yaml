@@ -37,8 +37,14 @@
     group: root
     mode: 0644
 
-#- name: Git checkout
-#  ansible.builtin.git:
-#    repo: 'https://foosball.example.org/path/to/repo.git'
-#    dest: /srv/checkout
-#    version: release-0.22
+- name: Git checkout
+  ansible.builtin.git:
+    repo: 'https://github.com/imp14a/python-flask-pugsite.git'
+    dest: /pugsite/
+    version: master
+
+- name: Install requirements
+  pip: 
+    requirements: /pugsite/requirements.txt
+    virtualenv: /pugsite/venv
+    virtualenv_python: python3
