@@ -42,7 +42,6 @@
   ansible.builtin.git:
     repo: 'https://github.com/imp14a/python-flask-pugsite.git'
     dest: /pugsite/app
-    version: master
 
 - name: Install requirements
   pip: 
