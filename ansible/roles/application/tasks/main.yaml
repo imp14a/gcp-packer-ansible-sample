@@ -53,15 +53,6 @@
   become: true
   become_user: root
 
-- name: Change directory permissions
-  ansible.builtin.file:
-    path: /pugsite
-    state: directory
-    recurse: true
-    owner: siteadmin
-    group: siteadmin
-    mode: '0644'
-
 - name: Install requirements
   pip: 
     requirements: /pugsite/app/requirements.txt
@@ -70,6 +61,15 @@
   tags:
     - venv
   environment:
-    PATH: "{{ ansible_env.PATH }}:/usr/local/bin/"
+    PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
   become: true
-  become_user: siteadmin
+  become_user: root
+
+- name: Change directory permissions
+  ansible.builtin.file:
+    path: /pugsite
+    state: directory
+    recurse: true
+    owner: siteadmin
+    group: siteadmin
+    mode: '0644'
