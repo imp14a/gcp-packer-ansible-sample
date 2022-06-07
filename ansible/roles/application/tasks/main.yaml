@@ -1,12 +1,13 @@
 
 
-- name: install the latest version of python3
+- name: installing yum requirements
   yum:
     name: "{{ item }}"
     state: latest
   with_items: 
     - python3
     - python-pip
+    - git
 
 - pip:
     name: "{{ item }}"
