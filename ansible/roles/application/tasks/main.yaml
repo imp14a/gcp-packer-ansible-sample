@@ -67,5 +67,9 @@
     requirements: /pugsite/app/requirements.txt
     virtualenv: /pugsite/app/venv
     virtualenv_python: python3
+  tags:
+    - venv
+  environment:
+    PATH: "{{ ansible_env.PATH }}:/usr/local/bin/"
   become: true
   become_user: siteadmin
