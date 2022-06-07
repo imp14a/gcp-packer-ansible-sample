@@ -27,6 +27,7 @@
     executable: pip3
   become: true
   become_user: siteadmin
+  extra_args: --user
 
 
 - name: Create site directory
