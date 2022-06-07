@@ -12,6 +12,8 @@
 - pip:
     name: "{{ item }}"
     executable: pip3
+  become: true
+  become_user: root
   with_items: 
     - virtualenv
     - Flask
