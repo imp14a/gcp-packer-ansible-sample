@@ -60,6 +60,12 @@
   become: true
   become_user: siteadmin
 
+- name: enable service pugsite and ensure it is not masked
+  systemd:
+    name: pugsite
+    enabled: yes
+    masked: no
+
 - name: just force systemd to reread configs (2.4 and above)
   systemd: daemon_reload=yes
 
