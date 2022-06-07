@@ -1,2 +1,2 @@
 #!/bin/sh
-python3 -m http.server -p 8080
+python3 -m http.server
