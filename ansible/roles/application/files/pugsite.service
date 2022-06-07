@@ -5,6 +5,7 @@ After=multi-user.target
 [Service]
 Type=simple
 ExecStart=/pugsite/pugsite-start.sh
+User=siteadmin
 
 [Install]
 WantedBy=multi-user.target

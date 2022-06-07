@@ -5,12 +5,6 @@
     name: ['python3','python-pip','git']
     state: latest
 
-- pip:
-    name: ['virtualenv','Flask']
-    executable: pip3
-  become: true
-  become_user: root
-
 - copy:
     src: /tmp/packer-ansible-provisioner/roles/application/files/pugsite.service
     dest: /etc/systemd/system/pugsite.service
@@ -18,25 +12,39 @@
     group: root
     mode: 0644
 
+- name: Add the user 'siteadmin'
+  ansible.builtin.user:
+    name: siteadmin
+    group: siteadmin
+
+- pip:
+    name: ['virtualenv','Flask']
+    executable: pip3
+  become: true
+  become_user: siteadmin
+
+
 - name: Create site directory
   ansible.builtin.file:
     path: /pugsite
     state: directory
-    owner: root
-    group: root
+    owner: siteadmin
+    group: siteadmin
     mode: '0644'
 
 - copy:
     src: /tmp/packer-ansible-provisioner/roles/application/files/pugsite-start.sh
     dest: /pugsite/pugsite-start.sh
-    owner: root
-    group: root
+    owner: siteadmin
+    group: siteadmin
     mode: 0644
 
 - name: Git checkout
   ansible.builtin.git:
     repo: 'https://github.com/imp14a/python-flask-pugsite.git'
     dest: /pugsite/app
+  become: true
+  become_user: siteadmin
 
 - name: Install requirements
   pip: 
@@ -44,4 +52,4 @@
     virtualenv: /pugsite/app/venv
     virtualenv_python: python3
   become: true
-  become_user: root
+  become_user: siteadmin
