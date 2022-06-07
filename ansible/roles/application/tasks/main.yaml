@@ -25,9 +25,9 @@
 - pip:
     name: ['virtualenv','Flask']
     executable: pip3
+    extra_args: --user
   become: true
   become_user: siteadmin
-  extra_args: --user
 
 
 - name: Create site directory
