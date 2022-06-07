@@ -41,11 +41,11 @@
 - name: Git checkout
   ansible.builtin.git:
     repo: 'https://github.com/imp14a/python-flask-pugsite.git'
-    dest: /pugsite/
+    dest: /pugsite/app
     version: master
 
 - name: Install requirements
   pip: 
-    requirements: /pugsite/requirements.txt
-    virtualenv: /pugsite/venv
+    requirements: /pugsite/app/requirements.txt
+    virtualenv: /pugsite/app/venv
     virtualenv_python: python3
