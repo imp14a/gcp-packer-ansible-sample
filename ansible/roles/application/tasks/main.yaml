@@ -12,6 +12,11 @@
     group: root
     mode: 0644
 
+- name: Ensure group "siteadmin" exists
+  ansible.builtin.group:
+    name: siteadmin
+    state: present
+
 - name: Add the user 'siteadmin'
   ansible.builtin.user:
     name: siteadmin
