@@ -2,21 +2,14 @@
 
 - name: installing yum requirements
   yum:
-    name: "{{ item }}"
+    name: ['python3','python-pip','git']
     state: latest
-  with_items: 
-    - python3
-    - python-pip
-    - git
 
 - pip:
-    name: "{{ item }}"
+    name: ['virtualenv','Flask']
     executable: pip3
   become: true
   become_user: root
-  with_items: 
-    - virtualenv
-    - Flask
 
 - copy:
     src: /tmp/packer-ansible-provisioner/roles/application/files/pugsite.service
@@ -50,3 +43,5 @@
     requirements: /pugsite/app/requirements.txt
     virtualenv: /pugsite/app/venv
     virtualenv_python: python3
+  become: true
+  become_user: root
