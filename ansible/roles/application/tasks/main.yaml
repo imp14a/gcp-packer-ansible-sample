@@ -37,39 +37,34 @@
     recurse: true
     owner: siteadmin
     group: siteadmin
-    mode: '0644'
+    mode: '0755'
 
 - copy:
     src: /tmp/packer-ansible-provisioner/roles/application/files/pugsite-start.sh
     dest: /pugsite/pugsite-start.sh
     owner: siteadmin
     group: siteadmin
-    mode: '0644'
+    mode: '0755'
 
 - name: Git checkout
   ansible.builtin.git:
     repo: 'https://github.com/imp14a/python-flask-pugsite.git'
     dest: /pugsite/app
   become: true
-  become_user: root
+  become_user: siteadmin
 
-- name: Install requirements
-  pip: 
-    requirements: /pugsite/app/requirements.txt
-    virtualenv: /pugsite/app/venv
-    virtualenv_python: python3
-  tags:
-    - venv
-  environment:
-    PATH: "{{ ansible_env.PATH }}:/usr/local/bin"
+- name: Pip install application
+  ansible.builtin.shell:
+    cmd: "pip3 install -e . --user"
+    chdir: "/pugsite/app/"
   become: true
-  become_user: root
+  become_user: siteadmin
 
-- name: Change directory permissions
-  ansible.builtin.file:
-    path: /pugsite
-    state: directory
-    recurse: true
-    owner: siteadmin
-    group: siteadmin
-    mode: '0644'
+#- name: Change directory permissions
+#  ansible.builtin.file:
+#    path: /pugsite
+#    state: directory
+#    recurse: true
+#    owner: siteadmin
+#    group: siteadmin
+#    mode: '0644'
